@@ -1,23 +1,15 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.js"
-    }
-  ],
-  "env": {
-    "MAILSLURP_API_KEY": "@mailslurp_api_key"
-  },
-  "functions": {
-    "server.js": {
-      "maxDuration": 300
-    }
+  {
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "server.js"
+      }
+    ]
   }
-}
