@@ -1,0 +1,12 @@
+{
+  "name": "auralo-hoodie-landing",
+  "version": "1.0.0",
+  "description": "You Are Not For Everyone - Luxury hoodie landing page",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "dev": "python3 -m http.server 3000"
+  },
+  "keywords": ["landing-page", "hoodie", "fashion", "simpleswap"],
+  "author": "Auralo"
+}
