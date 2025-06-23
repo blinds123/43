@@ -957,6 +957,144 @@
             transform: translateY(-50%) rotate(-45deg);
         }
 
+        /* IN-STORE AVAILABILITY */
+        .store-availability {
+            background: var(--big-day-white);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .availability-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) 0;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .availability-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--big-day-black);
+        }
+
+        .availability-icon {
+            font-size: 1.2rem;
+            color: var(--simpleswap-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .availability-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .availability-content.open {
+            max-height: 400px;
+        }
+
+        .availability-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .pickup-location {
+            display: flex;
+            align-items: center;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(33, 150, 243, 0.1);
+        }
+
+        .pickup-location:last-child {
+            border-bottom: none;
+        }
+
+        .pickup-check {
+            color: #10b981;
+            font-size: 1.2rem;
+            margin-right: var(--space-sm);
+        }
+
+        .pickup-details {
+            flex: 1;
+        }
+
+        .pickup-name {
+            font-weight: 600;
+            color: var(--big-day-black);
+            margin-bottom: 2px;
+        }
+
+        .pickup-time {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .inventory-status {
+            background: linear-gradient(135deg, var(--simpleswap-light-blue) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border-radius: 8px;
+            padding: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .inventory-title {
+            font-weight: 600;
+            color: var(--big-day-black);
+            margin-bottom: var(--space-sm);
+            text-align: center;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-xs);
+        }
+
+        .inventory-item {
+            text-align: center;
+            padding: var(--space-xs);
+            background: var(--big-day-white);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .inventory-size {
+            font-weight: 700;
+            color: var(--big-day-black);
+            font-size: 0.9rem;
+        }
+
+        .inventory-count {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .inventory-count.sold-out {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        .inventory-count.available {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .store-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin: var(--space-md) auto;
+            display: block;
+            box-shadow: var(--shadow-light);
+            opacity: 0.9;
+        }
+
         /* STORY - AUTHENTIC NARRATIVE */
         .story-section {
             padding: var(--space-xl) 0;
@@ -1954,6 +2092,58 @@
                     </div>
                 </div>
                 
+                <!-- In-Store Availability -->
+                <div class="store-availability">
+                    <div class="availability-header" onclick="toggleAvailability()">
+                        <span class="availability-title">Check In-Store Availability</span>
+                        <span class="availability-icon">▼</span>
+                    </div>
+                    <div class="availability-content" id="storeAvailability">
+                        <div class="pickup-location">
+                            <span class="pickup-check">✓</span>
+                            <div class="pickup-details">
+                                <div class="pickup-name">Newbury St - Boston, MA</div>
+                                <div class="pickup-time">Usually ready in 24 hours</div>
+                            </div>
+                        </div>
+                        <div class="pickup-location">
+                            <span class="pickup-check">✓</span>
+                            <div class="pickup-details">
+                                <div class="pickup-name">East Hampton - The Hamptons, NY</div>
+                                <div class="pickup-time">Usually ready in 24 hours</div>
+                            </div>
+                        </div>
+                        
+                        <div class="inventory-status">
+                            <div class="inventory-title">Current Store Inventory</div>
+                            <div class="inventory-grid">
+                                <div class="inventory-item">
+                                    <div class="inventory-size">XS</div>
+                                    <div class="inventory-count sold-out">Sold Out</div>
+                                </div>
+                                <div class="inventory-item">
+                                    <div class="inventory-size">S</div>
+                                    <div class="inventory-count available">2 left</div>
+                                </div>
+                                <div class="inventory-item">
+                                    <div class="inventory-size">M</div>
+                                    <div class="inventory-count available">4 left</div>
+                                </div>
+                                <div class="inventory-item">
+                                    <div class="inventory-size">L</div>
+                                    <div class="inventory-count sold-out">Sold Out</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cdefs%3E%3ClinearGradient id='storeGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f5f5f5'/%3E%3Cstop offset='100%25' style='stop-color:%23e5e5e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='200' fill='url(%23storeGrad)'/%3E%3Crect x='20' y='120' width='360' height='60' fill='%23ffffff' stroke='%23d4af37' stroke-width='2' rx='8'/%3E%3Crect x='60' y='40' width='80' height='120' fill='%23f8f8f8' stroke='%23ccc' stroke-width='1' rx='4'/%3E%3Crect x='260' y='40' width='80' height='120' fill='%23f8f8f8' stroke='%23ccc' stroke-width='1' rx='4'/%3E%3Crect x='180' y='100' width='40' height='60' fill='%23d4af37' rx='20'/%3E%3Crect x='185' y='105' width='30' height='50' fill='%23b8941f' rx='15'/%3E%3Ctext x='200' y='140' text-anchor='middle' font-family='Space Mono, monospace' font-size='18' font-weight='700' fill='%230a0a0a'%3EAURALO%3C/text%3E%3Cpath d='M 80 60 Q 100 50 120 60' stroke='%23f5f0e8' stroke-width='3' fill='none'/%3E%3Cpath d='M 280 60 Q 300 50 320 60' stroke='%23f5f0e8' stroke-width='3' fill='none'/%3E%3Ccircle cx='100' cy='80' r='8' fill='%23f5f0e8'/%3E%3Ccircle cx='300' cy='80' r='8' fill='%23f5f0e8'/%3E%3Ctext x='200' y='25' text-anchor='middle' font-family='Arial, sans-serif' font-size='10' fill='%23666'%3ENewbury Street Flagship%3C/text%3E%3C/svg%3E" alt="Auralo Store - Newbury Street" class="store-image">
+                        
+                        <div style="text-align: center; margin-top: var(--space-sm); font-size: 0.85rem; color: var(--text-secondary);">
+                            Check availability at other stores
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Transparency Section -->
                 <div class="transparency-section">
                     <h3 class="transparency-title">Why Only $20? (Real Talk)</h3>
@@ -2735,6 +2925,20 @@
             } else {
                 chart.style.display = 'none';
                 toggle.textContent = '📏 Size Chart';
+            }
+        }
+
+        // Toggle store availability dropdown
+        function toggleAvailability() {
+            const content = document.getElementById('storeAvailability');
+            const icon = document.querySelector('.availability-icon');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                icon.classList.add('open');
             }
         }
 
