@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>You Are Not For Everyone - $20</title>
-    <link rel="preload" href="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" as="image">
+    <link rel="preload" href="./images/dscxr443e2_optimized (1).jpg" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -643,8 +643,8 @@
         .morning-bg {
             background: 
                 /* Morning casual lifestyle - relaxed poses */
-                url('https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=120'),
-                url('https://images.unsplash.com/photo-1562572159-4efc207f5aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=120'),
+                url('./images/morning1.1.jpg'),
+                url('./images/bvtryhy.png'),
                 linear-gradient(rgba(245, 235, 220, 0.1), rgba(245, 235, 220, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 20% 30%, 80% 70%, center;
@@ -656,8 +656,8 @@
         .study-bg {
             background: 
                 /* Deep work - images with laptops and work setup */
-                url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=120'),
-                url('https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=120'),
+                url('./images/morning2.jpg'),
+                url('./images/fvcf.jpg'),
                 linear-gradient(rgba(235, 230, 215, 0.1), rgba(235, 230, 215, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 20% 25%, 80% 75%, center;
@@ -669,8 +669,8 @@
         .night-bg {
             background: 
                 /* After hours - evening/night vibes */
-                url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=120'),
-                url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=160&h=120'),
+                url('./images/fggt5cvhj.png'),
+                url('./images/vcvjjr.png'),
                 linear-gradient(rgba(30, 26, 22, 0.1), rgba(30, 26, 22, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 25% 30%, 75% 70%, center;
@@ -985,8 +985,8 @@
         .store-availability {
             background: var(--big-day-white);
             border-radius: 12px;
-            padding: var(--space-lg);
-            margin: var(--space-lg) 0;
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
             box-shadow: var(--shadow-light);
             border: 1px solid var(--border-subtle);
         }
@@ -1029,7 +1029,7 @@
         .pickup-location {
             display: flex;
             align-items: center;
-            padding: var(--space-md) 0;
+            padding: var(--space-sm) 0;
             border-bottom: 1px solid rgba(33, 150, 243, 0.1);
         }
 
@@ -1061,8 +1061,8 @@
         .inventory-status {
             background: linear-gradient(135deg, var(--simpleswap-light-blue) 0%, rgba(255, 255, 255, 0.8) 100%);
             border-radius: 8px;
-            padding: var(--space-md);
-            margin-top: var(--space-md);
+            padding: var(--space-sm);
+            margin-top: var(--space-sm);
         }
 
         .inventory-title {
@@ -1141,13 +1141,21 @@
 
         .store-image {
             width: 100%;
-            max-width: 300px;
+            max-width: 200px;
             height: auto;
             border-radius: 8px;
-            margin: var(--space-md) auto;
+            margin: var(--space-sm) auto;
             display: block;
             box-shadow: var(--shadow-light);
             opacity: 0.9;
+        }
+        
+        .hamptons-store-image {
+            width: 60px;
+            height: 40px;
+            border-radius: 4px;
+            margin-left: auto;
+            object-fit: cover;
         }
 
         /* STORY - AUTHENTIC NARRATIVE */
@@ -1537,14 +1545,87 @@
         
         .comparison-table {
             margin: var(--space-lg) 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
-        .comparison-header,
-        .comparison-row {
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2px;
+            background: var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            min-width: 300px;
+        }
+        
+        .comparison-cell {
+            background: var(--big-day-white);
+            padding: var(--space-md);
             display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-lg);
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 60px;
+        }
+        
+        .comparison-header-cell {
+            background: var(--simpleswap-light-blue);
+            font-weight: 700;
+            color: var(--big-day-black);
+        }
+        
+        .comparison-feature-cell {
+            background: var(--big-day-light-gray);
+            font-weight: 600;
+            color: var(--big-day-black);
+        }
+        
+        .comparison-highlight {
+            background: var(--simpleswap-blue);
+            color: var(--big-day-white);
+            font-weight: 700;
+        }
+        
+        .comparison-positive {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .comparison-negative {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        @media (max-width: 468px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1px;
+                min-width: auto;
+            }
+            
+            .comparison-cell {
+                padding: var(--space-sm);
+                min-height: 50px;
+                font-size: 0.9rem;
+            }
+            
+            .comparison-mobile-label {
+                display: inline;
+                font-weight: 700;
+                margin-right: 8px;
+                color: var(--simpleswap-blue);
+            }
+            
+            .comparison-header-cell {
+                display: none;
+            }
+        }
+        
+        @media (min-width: 469px) {
+            .comparison-mobile-label {
+                display: none;
+            }
         }
         
         @media (min-width: 480px) {
@@ -2085,7 +2166,7 @@
             </div>
             
             <div class="product-display">
-                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                <img src="./images/dscxr443e2_optimized (1).jpg" 
                      alt="You Are Not For Everyone Hoodie" 
                      class="product-image">
                 <div class="price-badge">$20</div>
@@ -2167,6 +2248,7 @@
                                 <div class="pickup-name">East Hampton - The Hamptons, NY</div>
                                 <div class="pickup-time">Usually ready in 24 hours</div>
                             </div>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Cdefs%3E%3ClinearGradient id='hamptonsBg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23e8f4f8'/%3E%3Cstop offset='100%25' style='stop-color:%23d1e7dd'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='80' fill='url(%23hamptonsBg)'/%3E%3Crect x='10' y='50' width='100' height='25' fill='%23ffffff' stroke='%23b8941f' stroke-width='1' rx='3'/%3E%3Crect x='20' y='20' width='25' height='35' fill='%23f8f8f8' stroke='%23ccc' stroke-width='0.5' rx='2'/%3E%3Crect x='75' y='20' width='25' height='35' fill='%23f8f8f8' stroke='%23ccc' stroke-width='0.5' rx='2'/%3E%3Crect x='50' y='35' width='20' height='20' fill='%23b8941f' rx='10'/%3E%3Ctext x='60' y='47' text-anchor='middle' font-family='Arial, sans-serif' font-size='8' font-weight='700' fill='%23ffffff'%3EA%3C/text%3E%3Ctext x='60' y='8' text-anchor='middle' font-family='Arial, sans-serif' font-size='6' fill='%23666'%3EHamptons%3C/text%3E%3Cpath d='M 30 25 Q 35 20 40 25' stroke='%23d1e7dd' stroke-width='2' fill='none'/%3E%3Cpath d='M 80 25 Q 85 20 90 25' stroke='%23d1e7dd' stroke-width='2' fill='none'/%3E%3C/svg%3E" alt="Hamptons Store" class="hamptons-store-image">
                         </div>
                         
                         <div class="inventory-status">
@@ -2283,25 +2365,25 @@
             <div class="story-carousel">
                 <div class="story-slides" id="storySlides">
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 1">
+                        <img src="./images/slide-1_final_crushed_under_20kb.jpg" alt="Story 1">
                     </div>
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 2">
+                        <img src="./images/slide-2_final_crushed_under_20kb.jpg" alt="Story 2">
                     </div>
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 3">
+                        <img src="./images/slide-3_captioned_final_under_20kb.jpg" alt="Story 3">
                     </div>
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1540479859555-17af45c78602?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 4">
+                        <img src="./images/slide-4_final_crushed_under_20kb.jpg" alt="Story 4">
                     </div>
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 5">
+                        <img src="./images/slide-5_final_crushed_under_20kb.jpg" alt="Story 5">
                     </div>
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 6">
+                        <img src="./images/slide-6_final_crushed_under_20kb.jpg" alt="Story 6">
                     </div>
                     <div class="story-slide">
-                        <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Story 7">
+                        <img src="./images/slide-7_final_crushed_under_20kb.jpg" alt="Story 7">
                     </div>
                 </div>
                 <div class="story-controls" id="storyControls">
@@ -2332,42 +2414,42 @@
                 <div class="review-slides" id="tiktokSlides">
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616c27a8fad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Ava_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Emma_black_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Madison_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Sophia_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616c27a8fad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Ava_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Isabella_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Kristen_v2_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Customer Review" class="review-image">
+                            <img src="./images/compressed_hoodie_review_Mia_30kb.jpg" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                 </div>
@@ -2400,27 +2482,27 @@
                 <div class="review-slides" id="trustpilotSlides">
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trustpilot Review" class="review-image">
+                            <img src="./images/compressed_trustpilot_review_Addison_30kb.jpg" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trustpilot Review" class="review-image">
+                            <img src="./images/compressed_trustpilot_review_Danielle_30kb.jpg" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trustpilot Review" class="review-image">
+                            <img src="./images/compressed_trustpilot_review_Emily_30kb.jpg" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trustpilot Review" class="review-image">
+                            <img src="./images/compressed_trustpilot_review_Lauren_white_30kb.jpg" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trustpilot Review" class="review-image">
+                            <img src="./images/compressed_trustpilot_review_Morgan_30kb.jpg" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                 </div>
@@ -2704,7 +2786,7 @@
                     <div class="step-number">1</div>
                     <div class="step-title">Click "Exchange"</div>
                     <div class="step-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        <img src="./images/screenshot1.jpg" 
                              alt="Click Exchange Button"
                              class="step-image">
                         <div class="arrow-pointer arrow-exchange"></div>
@@ -2716,7 +2798,7 @@
                     <div class="step-number">2</div>
                     <div class="step-title">Paste Your Code</div>
                     <div class="step-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        <img src="./images/screenshot2.jpg" 
                              alt="Paste the code"
                              class="step-image">
                         <div class="arrow-pointer arrow-wallet"></div>
@@ -2799,34 +2881,55 @@
             <h2 class="section-title">Why Choose Our Sustainable Checkout?</h2>
             
             <div class="comparison-table">
-                <div class="comparison-header">
-                    <div class="comparison-col"></div>
-                    <div class="comparison-col">Traditional</div>
-                    <div class="comparison-col highlight">Our Eco-Checkout</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Processing Fees</div>
-                    <div class="comparison-traditional">❌ HIGH: $0.60-$1.00</div>
-                    <div class="comparison-ours">✅ LOW: $0.10</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Environmental Impact</div>
-                    <div class="comparison-traditional">❌ ZERO Impact</div>
-                    <div class="comparison-ours">✅ Plants 5 Trees</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Checkout Time</div>
-                    <div class="comparison-traditional">❌ SLOW: 3-5 min</div>
-                    <div class="comparison-ours">✅ FAST: 60 sec</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Your Savings</div>
-                    <div class="comparison-traditional">❌ $0 Saved</div>
-                    <div class="comparison-ours">✅ Save $3-5</div>
+                <div class="comparison-grid">
+                    <!-- Header Row -->
+                    <div class="comparison-cell comparison-feature-cell"></div>
+                    <div class="comparison-cell comparison-header-cell">Traditional</div>
+                    <div class="comparison-cell comparison-header-cell comparison-highlight">Our Eco-Checkout</div>
+                    
+                    <!-- Processing Fees Row -->
+                    <div class="comparison-cell comparison-feature-cell">
+                        <span class="comparison-mobile-label">Processing Fees:</span>Processing Fees
+                    </div>
+                    <div class="comparison-cell comparison-negative">
+                        <span class="comparison-mobile-label">Traditional:</span>❌ HIGH: $0.60-$1.00
+                    </div>
+                    <div class="comparison-cell comparison-positive">
+                        <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ LOW: $0.10
+                    </div>
+                    
+                    <!-- Environmental Impact Row -->
+                    <div class="comparison-cell comparison-feature-cell">
+                        <span class="comparison-mobile-label">Environmental Impact:</span>Environmental Impact
+                    </div>
+                    <div class="comparison-cell comparison-negative">
+                        <span class="comparison-mobile-label">Traditional:</span>❌ ZERO Impact
+                    </div>
+                    <div class="comparison-cell comparison-positive">
+                        <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ Plants 5 Trees
+                    </div>
+                    
+                    <!-- Checkout Time Row -->
+                    <div class="comparison-cell comparison-feature-cell">
+                        <span class="comparison-mobile-label">Checkout Time:</span>Checkout Time
+                    </div>
+                    <div class="comparison-cell comparison-negative">
+                        <span class="comparison-mobile-label">Traditional:</span>❌ SLOW: 3-5 min
+                    </div>
+                    <div class="comparison-cell comparison-positive">
+                        <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ FAST: 60 sec
+                    </div>
+                    
+                    <!-- Your Savings Row -->
+                    <div class="comparison-cell comparison-feature-cell">
+                        <span class="comparison-mobile-label">Your Savings:</span>Your Savings
+                    </div>
+                    <div class="comparison-cell comparison-negative">
+                        <span class="comparison-mobile-label">Traditional:</span>❌ $0 Saved
+                    </div>
+                    <div class="comparison-cell comparison-positive">
+                        <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ Save $3-5
+                    </div>
                 </div>
             </div>
             
