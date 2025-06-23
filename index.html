@@ -600,15 +600,39 @@
             position: relative;
         }
 
+        .lifestyle-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+            max-width: 468px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 468px) {
+            .lifestyle-grid {
+                gap: 1px;
+                max-width: 100%;
+            }
+            
+            .moment-text h3 {
+                font-size: 0.9rem;
+            }
+            
+            .moment-text p {
+                font-size: 0.75rem;
+            }
+        }
+
         .moment-card {
             position: relative;
-            margin-bottom: var(--space-xl);
             border-radius: 20px;
             overflow: hidden;
             background: var(--big-day-white);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
+            aspect-ratio: 1;
         }
 
         .moment-card:hover {
@@ -637,10 +661,9 @@
 
         .moment-image {
             position: relative;
-            height: 320px;
+            height: 70%;
             overflow: visible;
             z-index: 1;
-            margin-bottom: 60px;
         }
 
         .moment-bg {
@@ -663,8 +686,8 @@
         .morning-bg {
             background: 
                 /* Morning casual lifestyle - relaxed poses */
-                url('./images/morning1.1.jpg'),
-                url('./images/bvtryhy.png'),
+                url('./images/morning1_optimized.jpg'),
+                url('./images/bvtryhy_optimized.jpg'),
                 linear-gradient(rgba(245, 235, 220, 0.1), rgba(245, 235, 220, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 20% 30%, 80% 70%, center;
@@ -676,8 +699,8 @@
         .study-bg {
             background: 
                 /* Deep work - images with laptops and work setup */
-                url('./images/morning2.jpg'),
-                url('./images/fvcf.jpg'),
+                url('./images/morning2_optimized.jpg'),
+                url('./images/fvcf_optimized.jpg'),
                 linear-gradient(rgba(235, 230, 215, 0.1), rgba(235, 230, 215, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 20% 25%, 80% 75%, center;
@@ -689,11 +712,24 @@
         .night-bg {
             background: 
                 /* After hours - evening/night vibes */
-                url('./images/fggt5cvhj.png'),
-                url('./images/vcvjjr.png'),
+                url('./images/fggt5cvhj_optimized.jpg'),
+                url('./images/vcvjjr_optimized.jpg'),
                 linear-gradient(rgba(30, 26, 22, 0.1), rgba(30, 26, 22, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 25% 30%, 75% 70%, center;
+            background-repeat: no-repeat, no-repeat, no-repeat;
+            background-blend-mode: normal, normal, multiply;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .lifestyle-bg {
+            background: 
+                /* Additional lifestyle moment */
+                url('./images/morning1_optimized.jpg'),
+                url('./images/morning2_optimized.jpg'),
+                linear-gradient(rgba(240, 238, 235, 0.1), rgba(240, 238, 235, 0.1));
+            background-size: 160px 120px, 160px 120px, cover;
+            background-position: 30% 25%, 70% 75%, center;
             background-repeat: no-repeat, no-repeat, no-repeat;
             background-blend-mode: normal, normal, multiply;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -711,22 +747,26 @@
         }
 
         .moment-text {
-            padding: var(--space-lg);
+            padding: 16px;
             background: var(--big-day-white);
+            height: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .moment-text h3 {
             font-family: var(--font-headline);
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--big-day-black);
-            margin-bottom: var(--space-sm);
+            margin-bottom: 8px;
         }
 
         .moment-text p {
             color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 0.8rem;
+            line-height: 1.3;
         }
 
         /* INTERACTIVE HOTSPOTS */
@@ -745,6 +785,8 @@
         .hotspot-4 { top: 70%; right: 15%; } /* Deep work image 2 - on hoodie */
         .hotspot-5 { top: 35%; left: 25%; } /* After hours image 1 - on hoodie */
         .hotspot-6 { top: 65%; right: 20%; } /* After hours image 2 - on hoodie */
+        .hotspot-7 { top: 40%; left: 30%; } /* Lifestyle image 1 - on hoodie */
+        .hotspot-8 { top: 60%; right: 25%; } /* Lifestyle image 2 - on hoodie */
 
         .hotspot-dot {
             width: 12px;
@@ -2778,66 +2820,89 @@
         <!-- LIFESTYLE MOMENTS GRID -->
         <div class="lifestyle-moments">
             <div class="container">
-                <!-- Morning Routine -->
-                <div class="moment-card morning" data-scene="morning">
-                    <div class="moment-image">
-                        <div class="moment-overlay">
-                            <div class="hotspot hotspot-1" data-tip="Premium cotton blend">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
+                <div class="lifestyle-grid">
+                    <!-- Morning Routine -->
+                    <div class="moment-card morning" data-scene="morning">
+                        <div class="moment-image">
+                            <div class="moment-overlay">
+                                <div class="hotspot hotspot-1" data-tip="Premium cotton blend">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
+                                <div class="hotspot hotspot-2" data-tip="Perfect oversized fit">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
                             </div>
-                            <div class="hotspot hotspot-2" data-tip="Perfect oversized fit">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
+                            <div class="moment-bg morning-bg"></div>
                         </div>
-                        <div class="moment-bg morning-bg"></div>
-                    </div>
-                    <div class="moment-text">
-                        <h3>5:47 AM</h3>
-                        <p>The hoodie that makes early mornings feel intentional</p>
-                    </div>
-                </div>
-                
-                <!-- Study Session -->
-                <div class="moment-card study" data-scene="study">
-                    <div class="moment-image">
-                        <div class="moment-overlay">
-                            <div class="hotspot hotspot-3" data-tip="Kangaroo pocket">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
-                            <div class="hotspot hotspot-4" data-tip="Breathable fabric">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
+                        <div class="moment-text">
+                            <h3>5:47 AM</h3>
+                            <p>Early morning comfort</p>
                         </div>
-                        <div class="moment-bg study-bg"></div>
                     </div>
-                    <div class="moment-text">
-                        <h3>Deep Work</h3>
-                        <p>When comfort meets productivity</p>
-                    </div>
-                </div>
-                
-                <!-- Night Out -->
-                <div class="moment-card night" data-scene="night">
-                    <div class="moment-image">
-                        <div class="moment-overlay">
-                            <div class="hotspot hotspot-5" data-tip="Elevated streetwear">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
+                    
+                    <!-- Study Session -->
+                    <div class="moment-card study" data-scene="study">
+                        <div class="moment-image">
+                            <div class="moment-overlay">
+                                <div class="hotspot hotspot-3" data-tip="Kangaroo pocket">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
+                                <div class="hotspot hotspot-4" data-tip="Breathable fabric">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
                             </div>
-                            <div class="hotspot hotspot-6" data-tip="Statement piece">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
+                            <div class="moment-bg study-bg"></div>
                         </div>
-                        <div class="moment-bg night-bg"></div>
+                        <div class="moment-text">
+                            <h3>Deep Work</h3>
+                            <p>Productivity meets comfort</p>
+                        </div>
                     </div>
-                    <div class="moment-text">
-                        <h3>After Hours</h3>
-                        <p>Comfort that commands attention</p>
+                    
+                    <!-- Night Out -->
+                    <div class="moment-card night" data-scene="night">
+                        <div class="moment-image">
+                            <div class="moment-overlay">
+                                <div class="hotspot hotspot-5" data-tip="Elevated streetwear">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
+                                <div class="hotspot hotspot-6" data-tip="Statement piece">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
+                            </div>
+                            <div class="moment-bg night-bg"></div>
+                        </div>
+                        <div class="moment-text">
+                            <h3>After Hours</h3>
+                            <p>Command attention</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Lifestyle -->
+                    <div class="moment-card lifestyle" data-scene="lifestyle">
+                        <div class="moment-image">
+                            <div class="moment-overlay">
+                                <div class="hotspot hotspot-7" data-tip="Versatile style">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
+                                <div class="hotspot hotspot-8" data-tip="All-day comfort">
+                                    <div class="hotspot-pulse"></div>
+                                    <div class="hotspot-dot"></div>
+                                </div>
+                            </div>
+                            <div class="moment-bg lifestyle-bg"></div>
+                        </div>
+                        <div class="moment-text">
+                            <h3>Every Moment</h3>
+                            <p>Your perfect companion</p>
+                        </div>
                     </div>
                 </div>
             </div>
