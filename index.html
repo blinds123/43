@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>You Are Not For Everyone - $20</title>
-    <link rel="preload" href="./images/dscxr443e2_optimized (1).jpg" as="image">
+    <link rel="preload" href="./images/main-hoodie.jpg" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -17,6 +17,8 @@
         }
 
         :root {
+            --common-transition: var(--common-transition);
+            --common-cubic-bezier: var(--common-cubic-bezier);
             /* SIMPLESWAP MATCHING COLOR PALETTE */
             --simpleswap-blue: #2196f3;
             --simpleswap-dark-blue: #1976d2;
@@ -310,7 +312,7 @@
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--common-transition);
             box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
             width: 100%;
             max-width: 300px;
@@ -402,7 +404,7 @@
             padding: var(--space-sm);
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--common-transition);
             position: relative;
             min-height: 80px;
             display: flex;
@@ -643,7 +645,7 @@
             overflow: hidden;
             background: var(--big-day-white);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s var(--common-cubic-bezier);
             cursor: pointer;
             aspect-ratio: 4 / 3;
             height: auto;
@@ -714,7 +716,7 @@
             background-position: 20% 30%, 80% 70%, center;
             background-repeat: no-repeat, no-repeat, no-repeat;
             background-blend-mode: normal, normal, multiply;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s var(--common-cubic-bezier);
         }
 
         .study-bg {
@@ -727,7 +729,7 @@
             background-position: 20% 25%, 80% 75%, center;
             background-repeat: no-repeat, no-repeat, no-repeat;
             background-blend-mode: normal, normal, multiply;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s var(--common-cubic-bezier);
         }
 
         .night-bg {
@@ -740,7 +742,7 @@
             background-position: 25% 30%, 75% 70%, center;
             background-repeat: no-repeat, no-repeat, no-repeat;
             background-blend-mode: normal, normal, multiply;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s var(--common-cubic-bezier);
         }
 
         .lifestyle-bg {
@@ -753,7 +755,7 @@
             background-position: 30% 25%, 70% 75%, center;
             background-repeat: no-repeat, no-repeat, no-repeat;
             background-blend-mode: normal, normal, multiply;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s var(--common-cubic-bezier);
         }
 
         .moment-overlay {
@@ -866,7 +868,7 @@
             width: auto;
             text-align: center;
             z-index: 1000;
-            animation: tooltipAppear 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: tooltipAppear 0.2s var(--common-cubic-bezier);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px) saturate(1.2);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1011,7 +1013,7 @@
             background: var(--big-day-white);
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            transition: var(--common-transition);
             cursor: pointer;
         }
 
@@ -1047,7 +1049,7 @@
             font-family: var(--font-headline);
             font-weight: 700;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            transition: var(--common-transition);
             box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
         }
         
@@ -1930,7 +1932,7 @@
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--common-transition);
             width: 100%;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
@@ -2417,9 +2419,39 @@
             }"
         }
     </style>
+
+    <script>
+        // Lazy loading implementation
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px'
+                });
+                
+                lazyImages.forEach(img => imageObserver.observe(img));
+            } else {
+                // Fallback for older browsers
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                });
+            }
+        });
+    </script>
 </head>
 <body>
-    <!-- HERO - CLEAR VALUE PROP -->
+    
     <section class="hero">
         <div class="container">
             <div style="text-align: center; margin-bottom: var(--space-md);">
@@ -2428,7 +2460,7 @@
             <h1 class="main-headline">You Are Not<br>For Everyone</h1>
             <p class="sub-headline">The $200 hoodie everyone wanted from our June drop. Most sizes sold out. We found 47 pieces in the warehouse. Your chance to get it for $20 before we donate the rest.</p>
             
-            <!-- URGENCY COUNTER -->
+            
             <div class="urgency-widget">
                 <div class="urgency-title">🔥 Limited Stock Alert</div>
                 <div class="stock-counter">
@@ -2439,13 +2471,13 @@
                     <span class="timer-text">Donating to charity in:</span>
                     <div class="countdown-timer" id="countdownTimer">
                         <span class="timer-number" id="hours">72</span>h
-                        <span class="timer-number" id="minutes">00</span>m
+                        <span class="timer-number" id="minutes">00</span>m <span class="timer-number" id="seconds">00</span>s
                     </div>
                 </div>
             </div>
             
             <div class="product-display">
-                <img src="./images/dscxr443e2_optimized (1).jpg" 
+                <img src="./images/main-hoodie.jpg" 
                      alt="You Are Not For Everyone Hoodie" 
                      class="product-image">
                 <div class="price-badge">$20</div>
@@ -2480,7 +2512,7 @@
                     </button>
                 </div>
                 
-                <!-- Sizing Chart -->
+                
                 <div class="sizing-chart">
                     <div class="chart-toggle" onclick="toggleSizeChart()">📏 Size Chart</div>
                     <div class="chart-content" id="sizeChart" style="display: none;">
@@ -2507,7 +2539,7 @@
                     </div>
                 </div>
                 
-                <!-- In-Store Availability -->
+                
                 <div class="store-availability">
                     <div class="availability-header" onclick="toggleAvailability()">
                         <span class="availability-title">Check In-Store Availability</span>
@@ -2523,36 +2555,17 @@
                         </div>
                         
                         <div class="store-photo-container">
-                            <img src="./images/hamptons-store_optimized.jpg" 
+                            <img src="./images/auralo-storefront.svg" 
                                  alt="Auralo East Hampton Store" 
                                  class="hamptons-store-photo">
                         </div>
                         
-                        <div class="inventory-status">
-                            <div class="inventory-title">Current Store Inventory</div>
-                            <div class="inventory-grid">
-                                <div class="inventory-item">
-                                    <div class="inventory-size">XS</div>
-                                    <div class="inventory-count sold-out">Sold Out</div>
-                                </div>
-                                <div class="inventory-item">
-                                    <div class="inventory-size">S</div>
-                                    <div class="inventory-count available">2 left</div>
-                                </div>
-                                <div class="inventory-item">
-                                    <div class="inventory-size">M</div>
-                                    <div class="inventory-count available">4 left</div>
-                                </div>
-                                <div class="inventory-item">
-                                    <div class="inventory-size">L</div>
-                                    <div class="inventory-count sold-out">Sold Out</div>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>
                 
-                <!-- Transparency Section -->
+                
                 <div class="transparency-section">
                     <h3 class="transparency-title">Why Only $20? (Real Talk)</h3>
                     <p class="transparency-text">
@@ -2576,7 +2589,7 @@
         </div>
     </section>
 
-    <!-- VALUE STACK VISUALIZATION -->
+    
     <section class="value-stack-section">
         <div class="container">
             <h2 class="section-title">What You Actually Get</h2>
@@ -2628,7 +2641,7 @@
         </div>
     </section>
 
-    <!-- STORY - AUTHENTIC -->
+    
     <section class="story-section">
         <div class="container">
             <h2 class="section-title">Why This Hoodie Exists</h2>
@@ -2636,25 +2649,25 @@
             <div class="story-carousel">
                 <div class="story-slides" id="storySlides">
                     <div class="story-slide">
-                        <img src="./images/slide-1_final_crushed_under_20kb.jpg" alt="Story 1">
+                        <img loading="lazy" data-src="./images/slide-1_final_crushed_under_20kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Story 1">
                     </div>
                     <div class="story-slide">
-                        <img src="./images/slide-2_final_crushed_under_20kb.jpg" alt="Story 2">
+                        <img loading="lazy" data-src="./images/slide-2_final_crushed_under_20kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Story 2">
                     </div>
                     <div class="story-slide">
                         <img src="./images/slide-3_captioned_final_under_20kb.jpg" alt="Story 3">
                     </div>
                     <div class="story-slide">
-                        <img src="./images/slide-4_final_crushed_under_20kb.jpg" alt="Story 4">
+                        <img loading="lazy" data-src="./images/slide-4_final_crushed_under_20kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Story 4">
                     </div>
                     <div class="story-slide">
-                        <img src="./images/slide-5_final_crushed_under_20kb.jpg" alt="Story 5">
+                        <img loading="lazy" data-src="./images/slide-5_final_crushed_under_20kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Story 5">
                     </div>
                     <div class="story-slide">
-                        <img src="./images/slide-6_final_crushed_under_20kb.jpg" alt="Story 6">
+                        <img loading="lazy" data-src="./images/slide-6_final_crushed_under_20kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Story 6">
                     </div>
                     <div class="story-slide">
-                        <img src="./images/slide-7_final_crushed_under_20kb.jpg" alt="Story 7">
+                        <img loading="lazy" data-src="./images/slide-7_final_crushed_under_20kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Story 7">
                     </div>
                 </div>
                 <div class="story-controls" id="storyControls">
@@ -2676,7 +2689,7 @@
         </div>
     </section>
 
-    <!-- TIKTOK REVIEWS -->
+    
     <section class="reviews-section">
         <div class="container">
             <h2 class="section-title">What People Are Saying on TikTok</h2>
@@ -2685,42 +2698,42 @@
                 <div class="review-slides" id="tiktokSlides">
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Ava_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Ava_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Emma_black_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Emma_black_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Madison_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Madison_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Sophia_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Sophia_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Ava_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Ava_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Isabella_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Isabella_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Kristen_v2_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Kristen_v2_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_hoodie_review_Mia_30kb.jpg" alt="Customer Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_hoodie_review_Mia_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Customer Review" class="review-image">
                         </div>
                     </div>
                 </div>
@@ -2744,7 +2757,7 @@
         </div>
     </section>
     
-    <!-- TRUSTPILOT REVIEWS -->
+    
     <section class="reviews-section">
         <div class="container">
             <h2 class="section-title">What People Are Saying on Trustpilot</h2>
@@ -2753,27 +2766,27 @@
                 <div class="review-slides" id="trustpilotSlides">
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_trustpilot_review_Addison_30kb.jpg" alt="Trustpilot Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_trustpilot_review_Addison_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_trustpilot_review_Danielle_30kb.jpg" alt="Trustpilot Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_trustpilot_review_Danielle_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_trustpilot_review_Emily_30kb.jpg" alt="Trustpilot Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_trustpilot_review_Emily_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_trustpilot_review_Lauren_white_30kb.jpg" alt="Trustpilot Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_trustpilot_review_Lauren_white_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                     <div class="review-slide">
                         <div class="review-card">
-                            <img src="./images/compressed_trustpilot_review_Morgan_30kb.jpg" alt="Trustpilot Review" class="review-image">
+                            <img loading="lazy" data-src="./images/compressed_trustpilot_review_Morgan_30kb.jpg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Trustpilot Review" class="review-image">
                         </div>
                     </div>
                 </div>
@@ -2794,7 +2807,7 @@
         </div>
     </section>
 
-    <!-- OBJECTION HANDLING -->
+    
     <section class="objection-section">
         <div class="container">
             <h2 class="section-title">But What If...</h2>
@@ -2840,7 +2853,7 @@
         </div>
     </section>
 
-    <!-- PAYMENT - SIMPLE EXPLANATION -->
+    
     <section class="payment-section">
         <div class="container">
             <div class="payment-story">
@@ -2923,7 +2936,7 @@
         </div>
     </section>
 
-    <!-- YOUR LIFE ELEVATED - WARDROBE TOUR -->
+    
     <section class="wardrobe-tour-section">
         <div class="wardrobe-hero">
             <div class="wardrobe-background">
@@ -2938,11 +2951,11 @@
             </div>
         </div>
         
-        <!-- LIFESTYLE MOMENTS GRID -->
+        
         <div class="lifestyle-moments">
             <div class="container">
                 <div class="lifestyle-grid">
-                    <!-- Morning Routine -->
+                    
                     <div class="moment-card morning" data-scene="morning">
                         <div class="moment-image">
                             <div class="moment-overlay">
@@ -2963,7 +2976,7 @@
                         </div>
                     </div>
                     
-                    <!-- Study Session -->
+                    
                     <div class="moment-card study" data-scene="study">
                         <div class="moment-image">
                             <div class="moment-overlay">
@@ -2984,7 +2997,7 @@
                         </div>
                     </div>
                     
-                    <!-- Night Out -->
+                    
                     <div class="moment-card night" data-scene="night">
                         <div class="moment-image">
                             <div class="moment-overlay">
@@ -3005,7 +3018,7 @@
                         </div>
                     </div>
                     
-                    <!-- Lifestyle -->
+                    
                     <div class="moment-card lifestyle" data-scene="lifestyle">
                         <div class="moment-image">
                             <div class="moment-overlay">
@@ -3029,14 +3042,14 @@
             </div>
         </div>
         
-        <!-- BUY BUTTON BETWEEN AFTER HOURS AND FITS INTO EVERY MOMENT -->
+        
         <div class="container" style="padding: var(--space-sm) 0; text-align: center;">
             <button class="buy-now-button" onclick="scrollToCheckout()">
                 Buy Now - $20
             </button>
         </div>
         
-        <!-- WARDROBE INTEGRATION -->
+        
         <div class="wardrobe-integration">
             <div class="container">
                 <div class="integration-content">
@@ -3070,7 +3083,7 @@
         </div>
     </section>
 
-    <!-- PROCESS - 2 STEPS ONLY -->
+    
     <section class="process-section" id="checkout-section">
         <div class="container">
             <h2 class="section-title">Simple 60-Second Eco-Checkout</h2>
@@ -3109,7 +3122,7 @@
         
     </section>
 
-    <!-- FUTURE PACING -->
+    
     <section class="future-pacing-section">
         <div class="container">
             <h2 class="section-title">Picture This...</h2>
@@ -3132,7 +3145,7 @@
         </div>
     </section>
 
-    <!-- GUARANTEE - BIG DAY STYLE -->
+    
     <section class="guarantee-section">
         <div class="container">
             <h2 class="section-title">Our Iron-Clad Promise</h2>
@@ -3169,30 +3182,30 @@
         </div>
     </section>
 
-    <!-- COMPARISON - BIG DAY STYLE -->
+    
     <section class="comparison-section">
         <div class="container">
             <h2 class="section-title">Why Choose Our Sustainable Checkout?</h2>
             
             <div class="comparison-table">
                 <div class="comparison-grid">
-                    <!-- Header Row -->
+                    
                     <div class="comparison-cell comparison-feature-cell"></div>
                     <div class="comparison-cell comparison-header-cell">Traditional</div>
                     <div class="comparison-cell comparison-header-cell comparison-highlight">Our Eco-Checkout</div>
                     
-                    <!-- Processing Fees Row -->
+                    
                     <div class="comparison-cell comparison-feature-cell">
                         <span class="comparison-mobile-label">Processing Fees:</span>Processing Fees
                     </div>
                     <div class="comparison-cell comparison-negative">
-                        <span class="comparison-mobile-label">Traditional:</span>❌ HIGH: $0.60-$1.00
+                        <span class="comparison-mobile-label">Traditional:</span>❌ HIGH: $3.00-$5.00
                     </div>
                     <div class="comparison-cell comparison-positive">
                         <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ LOW: $0.10
                     </div>
                     
-                    <!-- Environmental Impact Row -->
+                    
                     <div class="comparison-cell comparison-feature-cell">
                         <span class="comparison-mobile-label">Environmental Impact:</span>Environmental Impact
                     </div>
@@ -3203,7 +3216,7 @@
                         <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ Plants 5 Trees
                     </div>
                     
-                    <!-- Checkout Time Row -->
+                    
                     <div class="comparison-cell comparison-feature-cell">
                         <span class="comparison-mobile-label">Checkout Time:</span>Checkout Time
                     </div>
@@ -3214,7 +3227,7 @@
                         <span class="comparison-mobile-label">Our Eco-Checkout:</span>✅ FAST: 60 sec
                     </div>
                     
-                    <!-- Your Savings Row -->
+                    
                     <div class="comparison-cell comparison-feature-cell">
                         <span class="comparison-mobile-label">Your Savings:</span>Your Savings
                     </div>
@@ -3233,7 +3246,7 @@
         </div>
         
         
-        <!-- Additional Buy Button -->
+        
         <div class="section-cta">
             <button class="buy-now-button" onclick="scrollToCheckout()">
                 Choose Eco-Checkout - $20
@@ -3241,7 +3254,7 @@
         </div>
     </section>
 
-    <!-- FINAL CTA SECTION -->
+    
     <section class="cta-section">
         <div class="container">
             <h2 class="cta-title">🚀 60-Second Eco-Checkout</h2>
@@ -3268,7 +3281,7 @@
         </div>
     </section>
 
-    <!-- SOCIAL PROOF -->
+    
     <div class="social-notification" id="socialProof">
         <div id="proofText">Sarah from Chicago just ordered hers! 🔥</div>
     </div>
@@ -3276,6 +3289,41 @@
     <script>
         const CHECKOUT_URL = 'https://simpleswap.io/?from=usd&to=pol&amount=20&partner=auralo';
         const BONUS_CODE = '0xE5173e7c3089bD89cd1341b637b8e1951745ED5C';
+        
+        // Countdown Timer - Fixed to show 72 hours countdown
+        function updateCountdown() {
+            // Get saved end time or create new one 72 hours from now
+            let endTime = localStorage.getItem('donationEndTime');
+            if (!endTime) {
+                endTime = new Date().getTime() + (72 * 60 * 60 * 1000);
+                localStorage.setItem('donationEndTime', endTime);
+            }
+            
+            const now = new Date().getTime();
+            const timeLeft = parseInt(endTime) - now;
+            
+            if (timeLeft > 0) {
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                const hoursElement = document.getElementById('hours');
+                const minutesElement = document.getElementById('minutes');
+                const secondsElement = document.getElementById('seconds');
+                
+                if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
+                if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
+                if (secondsElement) secondsElement.textContent = String(seconds).padStart(2, '0');
+            } else {
+                // Reset timer when it reaches 0
+                localStorage.removeItem('donationEndTime');
+                updateCountdown();
+            }
+        }
+        
+        // Start the countdown timer
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
         
         // Size selection
         document.querySelectorAll('.size-option.available').forEach(option => {
@@ -3443,33 +3491,30 @@
             }, 3000);
         }
 
-        // Initialize size selector event listeners
+        
+        // Consolidated initialization - All in one place
         document.addEventListener('DOMContentLoaded', function() {
             // Size grid functionality
             document.querySelectorAll('.size-option[data-size]').forEach(button => {
                 button.addEventListener('click', function() {
                     if (!this.disabled && !this.classList.contains('sold-out')) {
-                        // Remove selected from all buttons
                         document.querySelectorAll('.size-option').forEach(btn => {
                             btn.classList.remove('selected');
                         });
-                        // Add selected to clicked button
                         this.classList.add('selected');
                         selectedSize = this.dataset.size;
                     }
                 });
             });
             
+            // Social proof timing
             setTimeout(() => {
                 showSocialProof();
                 setInterval(showSocialProof, 12000);
             }, 3000);
             
             setTimeout(copyBonusCode, 1000);
-        });
 
-        // WARDROBE TOUR INTERACTIONS
-        document.addEventListener('DOMContentLoaded', function() {
             // Parallax effect for wardrobe background
             const wardrobeBackground = document.querySelector('.wardrobe-background');
             if (wardrobeBackground) {
@@ -3498,7 +3543,6 @@
                         bg.style.filter = 'brightness(1.1) contrast(1.1)';
                     }
                     
-                    // Animate hotspots
                     const hotspots = this.querySelectorAll('.hotspot');
                     hotspots.forEach((hotspot, index) => {
                         setTimeout(() => {
@@ -3514,7 +3558,6 @@
                         bg.style.filter = 'brightness(1) contrast(1)';
                     }
                     
-                    // Reset hotspots
                     const hotspots = this.querySelectorAll('.hotspot');
                     hotspots.forEach(hotspot => {
                         hotspot.style.transform = 'scale(1)';
@@ -3536,7 +3579,6 @@
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
                         
-                        // Stagger animations for outfit combinations
                         if (entry.target.classList.contains('outfit-combinations')) {
                             const comboItems = entry.target.querySelectorAll('.combo-item');
                             comboItems.forEach((item, index) => {
@@ -3550,21 +3592,19 @@
                 });
             }, observerOptions);
 
-            // Observe elements for animation
             const animatedElements = document.querySelectorAll('.moment-card, .wardrobe-content, .outfit-combinations');
             animatedElements.forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                el.style.transition = 'all 0.6s var(--common-cubic-bezier)';
                 observer.observe(el);
             });
 
-            // Initialize combo items for staggered animation
             const comboItems = document.querySelectorAll('.combo-item');
             comboItems.forEach(item => {
                 item.style.opacity = '0';
                 item.style.transform = 'translateY(20px) scale(0.95)';
-                item.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                item.style.transition = 'all 0.4s var(--common-cubic-bezier)';
             });
 
             // Enhanced hotspot interactions
@@ -3574,7 +3614,6 @@
                 hotspot.style.transition = 'all 0.3s ease';
                 
                 hotspot.addEventListener('click', function() {
-                    // Create ripple effect
                     const ripple = document.createElement('div');
                     ripple.style.cssText = `
                         position: absolute;
