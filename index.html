@@ -57,6 +57,12 @@
             line-height: 1.5;
             overflow-x: hidden;
             position: relative;
+            max-width: 100vw;
+        }
+        
+        html {
+            overflow-x: hidden;
+            max-width: 100vw;
         }
         
         /* Subtle grain texture */
@@ -1233,11 +1239,14 @@
             position: relative;
             border-radius: 8px;
             overflow: hidden;
+            width: 100%;
+            max-width: 100%;
         }
 
         .story-slides {
             display: flex;
             transition: transform 0.4s ease;
+            width: 100%;
         }
 
         .story-slide {
@@ -1659,6 +1668,30 @@
             font-weight: 600;
         }
 
+        /* TABLET BREAKPOINT */
+        @media (max-width: 1024px) and (min-width: 469px) {
+            .wardrobe-title {
+                font-size: 2.2rem;
+            }
+            
+            .outfit-combinations {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                max-width: 500px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1px;
+                font-size: 0.95rem;
+            }
+            
+            .comparison-cell {
+                padding: 12px;
+                min-height: 60px;
+            }
+        }
+
         @media (max-width: 468px) {
             .comparison-grid {
                 grid-template-columns: 1fr;
@@ -1783,11 +1816,15 @@
 
         .review-carousel {
             margin: var(--space-lg) 0;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
         }
 
         .review-slides {
             display: flex;
             transition: transform 0.4s ease;
+            width: 100%;
         }
 
         .review-slide {
@@ -2134,6 +2171,50 @@
                 font-size: 1.8rem;
                 line-height: 1.1;
                 margin-bottom: 12px;
+            }
+            
+            /* FIX: Life Elevated title mobile */
+            .wardrobe-title {
+                font-size: 1.8rem !important;
+                line-height: 1.2;
+                margin-bottom: 16px;
+            }
+            
+            .wardrobe-subtitle {
+                font-size: 1rem;
+                margin-bottom: 24px;
+            }
+            
+            /* FIX: Fits Into Every Moment icons mobile */
+            .outfit-combinations {
+                grid-template-columns: 1fr !important;
+                gap: 12px;
+                max-width: 100%;
+            }
+            
+            .combo-item {
+                padding: 16px;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .combo-icon {
+                font-size: 2rem !important;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--simpleswap-light-blue);
+                border-radius: 50%;
+                margin: 0 auto;
+            }
+            
+            .combo-item span {
+                font-size: 0.9rem;
+                font-weight: 600;
             }
             
             .sub-headline {
