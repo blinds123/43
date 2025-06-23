@@ -144,13 +144,33 @@
 
         .social-badge {
             display: inline-block;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            font-weight: 400;
-            margin-bottom: var(--space-lg);
+            background: var(--simpleswap-blue);
+            color: var(--big-day-white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: var(--space-md);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.6;
+            letter-spacing: 1px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+            position: relative;
+            animation: socialPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes socialPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @media (max-width: 468px) {
+            .social-badge {
+                font-size: 0.65rem;
+                padding: 6px 12px;
+                margin-bottom: var(--space-sm);
+                letter-spacing: 0.5px;
+            }
         }
 
         .product-display {
@@ -1817,22 +1837,42 @@
         /* SOCIAL PROOF NOTIFICATION */
         .social-notification {
             position: fixed;
-            bottom: var(--space-md);
-            left: var(--space-md);
-            right: var(--space-md);
-            background: var(--big-day-gray);
-            color: var(--pure-white);
-            padding: var(--space-sm);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            transform: translateY(100px);
-            transition: transform 0.3s ease;
+            bottom: 20px;
+            left: 20px;
+            background: var(--big-day-white);
+            color: var(--big-day-black);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transform: translateX(-300px);
+            transition: transform 0.4s ease;
             z-index: 1000;
-            box-shadow: var(--shadow-medium);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid var(--simpleswap-blue);
+            max-width: 250px;
+            min-width: 200px;
         }
 
         .social-notification.show {
-            transform: translateY(0);
+            transform: translateX(0);
+        }
+        
+        .social-notification::before {
+            content: '🔥';
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 468px) {
+            .social-notification {
+                left: 10px;
+                right: 10px;
+                max-width: calc(100vw - 20px);
+                min-width: auto;
+                font-size: 0.8rem;
+                padding: 10px 12px;
+            }
         }
 
         /* VALUE STACK VISUALIZATION */
@@ -2044,8 +2084,24 @@
 
         /* RESPONSIVE */
         @media (max-width: 468px) {
+            .container {
+                padding: 0 16px;
+            }
+            
             .main-headline { 
-                font-size: 1.8rem; 
+                font-size: 1.8rem;
+                line-height: 1.1;
+                margin-bottom: 12px;
+            }
+            
+            .sub-headline {
+                font-size: 1rem;
+                line-height: 1.4;
+                margin-bottom: var(--space-md);
+            }
+            
+            .hero {
+                padding: var(--space-md) 0;
             }
             
             .transparency-section {
@@ -2062,6 +2118,56 @@
             .transparency-text {
                 font-size: 1.1rem;
                 line-height: 1.7;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+                line-height: 1.3;
+                margin-bottom: var(--space-md);
+            }
+            
+            .product-image {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            .buy-now-button {
+                padding: 14px 24px;
+                font-size: 1rem;
+                width: 100%;
+                margin: var(--space-sm) 0;
+            }
+            
+            .urgency-widget {
+                margin: var(--space-md) 0;
+                padding: var(--space-md);
+            }
+            
+            .stock-number {
+                font-size: 1.8rem;
+            }
+            
+            .wardrobe-tour-section {
+                padding: var(--space-lg) 0;
+            }
+            
+            .moment-cards {
+                gap: var(--space-md);
+            }
+            
+            .moment-card {
+                min-height: 200px;
+            }
+            
+            .story-section,
+            .reviews-section,
+            .comparison-section {
+                padding: var(--space-lg) 0;
+            }
+            
+            .section-cta {
+                margin: var(--space-md) 0;
+                text-align: center;
             }
             
             .comparison-table {
@@ -2145,7 +2251,9 @@
     <!-- HERO - CLEAR VALUE PROP -->
     <section class="hero">
         <div class="container">
-            <div class="social-badge">JUNE 2025 DROP - FINAL CLEARANCE</div>
+            <div style="text-align: center; margin-bottom: var(--space-md);">
+                <div class="social-badge">JUNE 2025 DROP - FINAL CLEARANCE</div>
+            </div>
             <h1 class="main-headline">You Are Not<br>For Everyone</h1>
             <p class="sub-headline">The $200 hoodie everyone wanted from our June drop. Most sizes sold out. We found 47 pieces in the warehouse. Your chance to get it for $20 before we donate the rest.</p>
             
