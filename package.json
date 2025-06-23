@@ -7,6 +7,15 @@
     "start": "python3 -m http.server 3000",
     "dev": "python3 -m http.server 3000"
   },
-  "keywords": ["landing-page", "hoodie", "fashion", "simpleswap"],
-  "author": "Auralo"
+  "keywords": [
+    "landing-page",
+    "hoodie",
+    "fashion",
+    "simpleswap"
+  ],
+  "author": "Auralo",
+  "dependencies": {
+    "express": "^5.1.0",
+    "sharp": "^0.34.2"
+  }
 }
