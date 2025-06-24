@@ -1,0 +1,394 @@
+/* 🚀 FUTURISTIC FASHION UI - AURALO ULTRA PREMIUM */
+
+/* 1. 🌊 LIQUID METAL MORPHING INTERFACE */
+:root {
+    --liquid-metal-1: linear-gradient(135deg, #c0c0c0 0%, #b8b8b8 20%, #ffffff 50%, #b8b8b8 80%, #c0c0c0 100%);
+    --liquid-metal-2: linear-gradient(45deg, #e8e8e8 0%, #d0d0d0 25%, #ffffff 50%, #d0d0d0 75%, #e8e8e8 100%);
+    --holographic: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b, #fb5607, #ff006e);
+    --glass-blur: blur(10px);
+    --glass-opacity: 0.1;
+}
+
+/* Liquid Metal Base */
+.liquid-metal-section {
+    position: relative;
+    background: var(--liquid-metal-1);
+    background-size: 200% 200%;
+    animation: liquidFlow 20s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.liquid-metal-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    animation: liquidRotate 30s linear infinite;
+}
+
+@keyframes liquidFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes liquidRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mercury Hover Effects */
+.mercury-button {
+    position: relative;
+    background: linear-gradient(135deg, #e8e8e8, #c0c0c0);
+    border: none;
+    padding: 15px 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.mercury-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff 0%, #e8e8e8 50%, #c0c0c0 100%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.mercury-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.mercury-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    color: #000;
+}
+
+/* 2. 🎆 HOLOGRAPHIC 3D PRODUCT SHOWCASE */
+.holographic-showcase {
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.holographic-product {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.holographic-product::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--holographic);
+    background-size: 300% 300%;
+    animation: holographicShift 8s linear infinite;
+    border-radius: 15px;
+    opacity: 0.7;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+@keyframes holographicShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.holographic-annotation {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    animation: floatAnnotation 3s ease-in-out infinite;
+}
+
+@keyframes floatAnnotation {
+    0%, 100% { transform: translateY(0) translateZ(50px); }
+    50% { transform: translateY(-10px) translateZ(50px); }
+}
+
+/* 3D Rotation on Hover */
+.product-3d:hover {
+    transform: rotateY(15deg) rotateX(-5deg) translateZ(50px);
+}
+
+.product-3d-image {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* 3. ✨ PARTICLE ECOSYSTEM */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.sparkle-trail {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkleFloat 2s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+.explosion-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--holographic);
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* 4. 🔮 GLASSMORPHISM WITH DEPTH */
+.glass-panel {
+    background: rgba(255, 255, 255, var(--glass-opacity));
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+    animation: glassShine 20s linear infinite;
+}
+
+@keyframes glassShine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.glass-depth-1 { --glass-blur: blur(5px); --glass-opacity: 0.1; z-index: 10; }
+.glass-depth-2 { --glass-blur: blur(10px); --glass-opacity: 0.15; z-index: 20; }
+.glass-depth-3 { --glass-blur: blur(15px); --glass-opacity: 0.2; z-index: 30; }
+
+/* Frosted Glass Navigation */
+.frosted-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* 5. ⚡ KINETIC TYPOGRAPHY SYSTEM */
+.liquid-text {
+    font-weight: 900;
+    background: var(--holographic);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: liquidText 5s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes liquidText {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.glitch-text {
+    position: relative;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    animation: glitch-1 0.3s infinite;
+    color: #ff006e;
+    z-index: -1;
+}
+
+.glitch-text::after {
+    animation: glitch-2 0.3s infinite;
+    color: #3a86ff;
+    z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+    40% { clip-path: inset(40% 0 40% 0); transform: translate(2px, -2px); }
+    60% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 2px); }
+    80% { clip-path: inset(80% 0 0 0); transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    20% { clip-path: inset(0 0 80% 0); transform: translate(2px, -2px); }
+    40% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+    60% { clip-path: inset(40% 0 40% 0); transform: translate(2px, -2px); }
+    80% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 2px); }
+}
+
+.neon-glow {
+    color: #fff;
+    text-shadow: 
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 30px #ff006e,
+        0 0 40px #ff006e,
+        0 0 50px #ff006e,
+        0 0 60px #ff006e,
+        0 0 70px #ff006e;
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.wave-text {
+    display: inline-block;
+}
+
+.wave-text span {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.1s);
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* 3D Text Extrusion */
+.text-3d {
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000;
+    text-shadow: 
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #999,
+        5px 5px 0 #888,
+        6px 6px 10px rgba(0,0,0,0.2);
+    transform: perspective(500px) rotateY(-15deg);
+    transition: all 0.3s ease;
+}
+
+.text-3d:hover {
+    transform: perspective(500px) rotateY(0deg);
+    text-shadow: 
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #999,
+        5px 5px 0 #888,
+        6px 6px 0 #777,
+        7px 7px 0 #666,
+        8px 8px 15px rgba(0,0,0,0.3);
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 768px) {
+    .holographic-product::before {
+        filter: blur(2px);
+    }
+    
+    .glass-panel {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .mercury-button {
+        padding: 12px 30px;
+    }
+    
+    .text-3d {
+        text-shadow: 
+            1px 1px 0 #ccc,
+            2px 2px 0 #bbb,
+            3px 3px 5px rgba(0,0,0,0.2);
+    }
+}
+
+/* PERFORMANCE OPTIMIZATIONS */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

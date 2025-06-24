@@ -1,21 +1,32 @@
 {
-  "name": "auralo-hoodie-landing",
-  "version": "1.0.0",
-  "description": "You Are Not For Everyone - Luxury hoodie landing page",
+  "name": "auralo-ultra-premium",
+  "version": "2.0.0",
+  "description": "AURALO Ultra Premium Website - Sub-1 second performance",
   "main": "index.html",
   "scripts": {
     "start": "python3 -m http.server 3000",
-    "dev": "python3 -m http.server 3000"
+    "dev": "python3 -m http.server 3000",
+    "build": "node vercel-build.js",
+    "optimize": "node vercel-final-optimizer.js",
+    "test": "node ultra-speed-test.js",
+    "install-deps": "npm install html-minifier clean-css terser"
   },
   "keywords": [
     "landing-page",
     "hoodie",
     "fashion",
-    "simpleswap"
+    "ultra-premium",
+    "high-performance"
   ],
   "author": "Auralo",
   "dependencies": {
     "express": "^5.1.0",
     "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "clean-css": "^5.3.2",
+    "terser": "^5.19.4",
+    "playwright": "^1.40.0"
   }
 }
